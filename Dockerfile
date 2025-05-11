@@ -1,14 +1,6 @@
 FROM python:3.11-slim
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    libcurl4-openssl-dev \
-    libpython3.11-dev python3-pycurl python3-geoip python3-whois \
-    python3-cryptography python3-requests libgeoip1 libgeoip-dev \
-    && pip install --upgrade pip \
-    && pip install pycurl GeoIP python-geoip pygeoip requests whois scapy pycryptodomex duckduckgo-search \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
+RUN python3 setup.py install
 RUN git clone https://github.com/epsylon/ufonet.git /ufonet
 WORKDIR /ufonet
 
